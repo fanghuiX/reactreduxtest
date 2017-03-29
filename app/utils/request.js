@@ -104,7 +104,7 @@ export default class Request {
 
     // has uc tokens
     if (auth.getTokens()) {
-      var matched = url.match(/^(?:https?:)?\/\/([^\/]+)(\/.+)$/i)
+      var matched = url.match(/^(?:https?:)?\/\/([^/]+)(\/.+)$/i)
       options.headers.Authorization = auth.getAuthentization(options.method, matched[2], matched[1])
     }
 

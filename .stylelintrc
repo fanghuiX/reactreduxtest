@@ -1,3 +1,7 @@
 {
-  "extends": "stylelint-config-standard"
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "number-leading-zero": "never",
+    "property-no-unknown": [true, {"ignoreProperties": ["composes"]}]
+  }
 }

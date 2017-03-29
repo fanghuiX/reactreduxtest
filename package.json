@@ -10,6 +10,7 @@
   "author": "vnot <weinotme@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "gfw": "npm i cross-env && cross-env PHANTOMJS_CDNURL=http://npm.taobao.org/mirrors/phantomjs npm install -r",
     "clean": "rimraf ./dist",
     "compile": "better-npm-run compile",
     "lint": "eslint ./app",
@@ -20,7 +21,8 @@
     "test": "better-npm-run test",
     "test:dev": "npm run test -- --browsers=Chrome --single-run=false",
     "build": "better-npm-run build",
-    "server": "http-server ./dist -p 8000 -o"
+    "server": "http-server ./dist -p 8000 -o",
+    "lock": "npm shrinkwrap --dev"
   },
   "betterScripts": {
     "compile": {
@@ -64,11 +66,11 @@
     "nd-md5s": "^3.0.0",
     "nd-sha": "^3.0.0",
     "nd-storage": "^3.0.0",
-    "postal": "^1.0.8",
+    "postal": "^2.0.5",
     "react": "^0.14.2",
     "react-addons-create-fragment": "^0.14.2",
     "react-addons-css-transition-group": "^0.14.2",
-    "react-addons-linked-state-mixin": "^15.0.1",
+    "react-addons-linked-state-mixin": "^0.14.8",
     "react-addons-pure-render-mixin": "^0.14.3",
     "react-addons-transition-group": "^0.14.2",
     "react-addons-update": "^0.14.2",
@@ -84,7 +86,7 @@
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.7.0",
-    "babel-eslint": "^5.0.0",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-react-transform": "^2.0.0",
@@ -105,11 +107,12 @@
     "chai-enzyme": "^0.4.0",
     "cheerio": "^0.20.0",
     "codecov": "^1.0.1",
+    "cross-env": "^3.2.4",
     "css-loader": "^0.23.0",
     "cssnano": "^3.3.2",
     "debug": "^2.2.0",
     "enzyme": "^2.0.0",
-    "eslint": "^2.1.0",
+    "eslint": "^3.18.0",
     "eslint-config-standard": "^5.1.0",
     "eslint-config-standard-react": "^2.2.0",
     "eslint-friendly-formatter": "^1.2.2",
@@ -153,7 +156,7 @@
     "postcss-sprites": "^3.1.0",
     "postcss-url": "^5.1.1",
     "precss": "^1.4.0",
-    "react-addons-test-utils": "^15.3.2",
+    "react-addons-test-utils": "^0.14.8",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.2",
     "redbox-react": "^1.2.2",
