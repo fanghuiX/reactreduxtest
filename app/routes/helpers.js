@@ -1,5 +1,4 @@
 import Route from 'react-router/lib/Route'
-import auth from 'utils/auth'
 
 /**
  * Webpack code splitting, load on demand
@@ -38,12 +37,6 @@ const walk = (routes, cb) => {
   return routes
 }
 
-const forwardHomeIfLoggedIn = (nextState, replace) => {
-  if (auth.isLogin()) {
-    replace('/')
-  }
-}
-
 const withAuth = routes => {
   return walk(Route.createRouteFromReactElement(routes), route => {
     const oldOnEnter = route.onEnter
@@ -57,21 +50,6 @@ const withAuth = routes => {
     }
 
     route.onEnter = (nextState, replace) => {
-      if (route.requireAuth) {
-        if (!auth.isLogin()) {
-          return replace({
-            pathname: '/login',
-            state: {
-              nextPathname: nextState.location.pathname
-            }
-          })
-        }
-
-        if (!auth.hasAuth(route.roles)) {
-          return replace('/403')
-        }
-      }
-
       oldOnEnter && oldOnEnter(nextState, replace)
     }
   })
@@ -80,6 +58,5 @@ const withAuth = routes => {
 export {
   asyncLoad,
   walk,
-  withAuth,
-  forwardHomeIfLoggedIn
+  withAuth
 }

@@ -4,7 +4,7 @@
 
 ``` bash
 # install dependencies
-npm install
+npm run install:gfw
 
 # serve with hot reload at localhost:3000
 npm run dev

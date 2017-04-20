@@ -269,11 +269,6 @@
       "resolved": "http://172.24.133.106:7001/aws4/download/aws4-1.6.0.tgz",
       "dev": true
     },
-    "axios": {
-      "version": "0.9.1",
-      "from": "git+https://github.com/weinot/axios.git",
-      "resolved": "git+https://github.com/weinot/axios.git#7b4ac4fc3cd5e5ee062865e5bfc1e3f378b55e48"
-    },
     "babel-cli": {
       "version": "6.24.0",
       "from": "babel-cli@>=6.5.1 <7.0.0",

@@ -4,13 +4,13 @@
   "description": "react-scaffold",
   "main": "index.js",
   "engines": {
-    "node": ">=4.2.0",
-    "npm": "^3.0.0"
+    "node": ">=7.5.0",
+    "npm": ">=4.1.2"
   },
   "author": "vnot <weinotme@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "gfw": "npm i cross-env && cross-env PHANTOMJS_CDNURL=http://npm.taobao.org/mirrors/phantomjs npm install -r",
+    "install:gfw": "npm i cross-env && cross-env PHANTOMJS_CDNURL=http://npm.taobao.org/mirrors/phantomjs npm install",
     "clean": "rimraf ./dist",
     "compile": "better-npm-run compile",
     "lint": "eslint ./app",
@@ -51,7 +51,6 @@
     }
   },
   "dependencies": {
-    "axios": "git+https://github.com/weinot/axios.git",
     "classnames": "^2.2.0",
     "core-decorators": "^0.11.0",
     "core-js": "^2.4.0",
