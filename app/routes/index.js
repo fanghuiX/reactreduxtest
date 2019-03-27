@@ -10,9 +10,12 @@ import Root from 'root'
 const routes = (
   <Route component={Root}>
     <Route path="/" comp="home/components/index">
-      <Route path="403" comp="shared/error/components/403"/>
-      <Route path="*" comp="shared/error/components/404"/>
+      <Route path="plus" comp="home/components/indecrase/index"/>
+      <Route path="list" comp="home/components/getlist/index"/>
+      <Route path="403" comp="shared/error/components/error403"/>
+      <Route path="404" comp="shared/error/components/error404"/>
     </Route>
+    <Route path="re" comp="home/components/reindex"/>
   </Route>
 )
 

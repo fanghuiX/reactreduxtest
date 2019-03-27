@@ -1,35 +1,15 @@
-import { createStore, applyMiddleware } from 'redux'
-import logger from 'redux-logger'
-import trader, {genesis, terminator} from 'redux-async-promise'
-import reducer from './reducers'
-import * as C from 'constants'
+import thunk from 'redux-thunk' // redux-thunk 支持 dispatch function，并且可以异步调用它
+import createLogger from 'redux-logger' // 利用redux-logger打印日志
+import { createStore, applyMiddleware, compose } from 'redux' // 引入redux createStore、中间件及compose
+// 调用日志打印方法
+const loggerMiddleware = createLogger()
 
-const middlewares = [genesis, trader, terminator]
-let finalCreateStore
+// 创建一个中间件集合
+const middleware = [thunk, loggerMiddleware]
 
-const makeHydratable = (reducer) => (state, action) => {
-  switch (action.type) {
-    case C.HYDRATE_STATE:
-      return reducer(action.payload, action)
-    default:
-      return reducer(state, action)
-  }
-}
+// 利用compose增强store，这个 store 与 applyMiddleware 和 redux-devtools 一起使用
+const finalCreateStore = compose(
+  applyMiddleware(...middleware)
+)(createStore)
 
-if (__DEBUG__) {
-  finalCreateStore = applyMiddleware(...middlewares, logger())(createStore)
-} else {
-  finalCreateStore = applyMiddleware(...middlewares)(createStore)
-}
-
-const hydratableReducer = makeHydratable(reducer)
-const store = finalCreateStore(hydratableReducer)
-
-if (module.hot) {
-  module.hot.accept('./reducers', () => {
-    const nextRootReducer = require('./reducers')
-    store.replaceReducer(nextRootReducer)
-  })
-}
-
-export { store }
+export default finalCreateStore

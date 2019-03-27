@@ -1,3 +1,15 @@
 .container {
   margin: 0 auto;
 }
+
+.divmenu {
+  width: 20%;
+  height: 100%;
+  float: left;
+}
+
+.divcontainer {
+  width: 40%;
+  height: 100%;
+  float: left;
+}
