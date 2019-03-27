@@ -14,7 +14,7 @@ class getL extends React.Component {
         &nbsp;&nbsp;&nbsp;&nbsp;
         <Button type="primary" onClick={() => cleardata()}>清除数据</Button>
         <br/>
-        <div>
+        <div style={{marginTop: 15}}>
           <ul>
             {lists.map((e) =>
               <List text={e.text}/>

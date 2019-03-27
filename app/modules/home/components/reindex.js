@@ -13,7 +13,7 @@ class rehome extends React.Component {
 
   render() {
     return (
-      <h1>home</h1>
+      <h1>NEXT PAGE</h1>
     )
   }
 }

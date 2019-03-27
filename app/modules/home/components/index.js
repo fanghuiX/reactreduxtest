@@ -3,32 +3,62 @@ import React from 'react'
 import { Link } from 'react-router'
 /*import { Menu, Dropdown, Icon } from 'antd'*/
 import 'antd/dist/antd.css'
+import Menu from 'antd/lib/menu'
+import Icon from 'antd/lib/icon'
+import Button from 'antd/lib/button'
+
+const SubMenu = Menu.SubMenu
 
 class Home extends React.Component {
-  componentWillMount() {
+  state = {
+    collapsed: false
   }
 
-  componentDidMount() {
-  }
-
-  componentDidUpdate(prevProps, prevState) {
+  toggleCollapsed = () => {
+    this.setState({
+      collapsed: !this.state.collapsed
+    })
   }
 
   render() {
     return (
       <div className={styles.container}>
         <div className={styles.divmenu}>
-          <nav>
-            <Link to="/" activeStyle={{color: '#555', backgroundColor: '#e7e7e7'}}>首页</Link>
-            <br/>
-            <Link to="/plus" activeStyle={{color: '#555', backgroundColor: '#e7e7e7'}}>计数器</Link>
-            <br/>
-            <Link to="/list" activeStyle={{color: '#555', backgroundColor: '#e7e7e7'}}>列表数据</Link>
-            <br/>
-            <Link to="/403" activeStyle={{color: '#555', backgroundColor: '#e7e7e7'}}>403</Link>
-            <br/>
-            <Link to="/404" activeStyle={{color: '#555', backgroundColor: '#e7e7e7'}}>404</Link>
-          </nav>
+          <div style={{ width: 256 }}>
+            <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
+              <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}/>
+            </Button>
+            <Menu
+              defaultSelectedKeys={[]}
+              defaultOpenKeys={['sub1']}
+              mode="inline"
+              theme="dark"
+              inlineCollapsed={this.state.collapsed}
+            >
+              <Menu.Item key="1">
+                <Link to="/re">
+                  <Icon type="down" />
+                  <span>下一级页面</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/plus">
+                  <Icon type="calculator" />
+                  <span>计数器</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/list">
+                  <Icon type="ordered-list" />
+                  <span>列表数据</span>
+                </Link>
+              </Menu.Item>
+              <SubMenu key="sub1" title={<span><Icon type="warning" /><span>ERROR</span></span>}>
+                <Menu.Item key="5"><Link to="/403">403</Link></Menu.Item>
+                <Menu.Item key="6"><Link to="/404">404</Link></Menu.Item>
+              </SubMenu>
+            </Menu>
+          </div>
         </div>
         <div className={styles.divcontainer}>
           <div>
