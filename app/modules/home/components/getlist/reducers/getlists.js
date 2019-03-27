@@ -5,7 +5,7 @@ const initialState = {
     {text: 'this is textone'},
     {text: 'wasd'},
     {text: 'GAME OVER'},
-    {text: '龙卷风摧毁停车场，乌鸦'}
+    {text: '龙卷风摧毁停车场，乌鸦坐飞机'}
   ]
 }
 

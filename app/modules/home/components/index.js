@@ -53,6 +53,12 @@ class Home extends React.Component {
                   <span>列表数据</span>
                 </Link>
               </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/jsondata">
+                  <Icon type="ordered-list" />
+                  <span>获取JSON数据</span>
+                </Link>
+              </Menu.Item>
               <SubMenu key="sub1" title={<span><Icon type="warning" /><span>ERROR</span></span>}>
                 <Menu.Item key="5"><Link to="/403">403</Link></Menu.Item>
                 <Menu.Item key="6"><Link to="/404">404</Link></Menu.Item>

@@ -12,6 +12,7 @@ const routes = (
     <Route path="/" comp="home/components/index">
       <Route path="plus" comp="home/components/indecrase/index"/>
       <Route path="list" comp="home/components/getlist/index"/>
+      <Route path="jsondata" comp="home/components/postJson/jsonList"/>
       <Route path="403" comp="shared/error/components/error403"/>
       <Route path="404" comp="shared/error/components/error404"/>
     </Route>
