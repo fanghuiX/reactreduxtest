@@ -1,5 +1,5 @@
 .container {
-  margin: 0 auto;
+  margin-top: 20px;
 }
 
 .divmenu {
@@ -13,4 +13,29 @@
   width: 256px;
   height: 100%;
   float: left;
+}
+
+.nextcontainer {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 800px;
+  height: 100%;
+}
+
+.nextcontainer .topp {
+  padding: 10px;
+  border: 1px dashed gainsboro;
+  width: 800px;
+}
+
+.nextcontainer .buttonl {
+  margin-top: 15px;
+  margin-left: 712px;
+}
+
+.nextcontainer .bottomm {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px dashed gainsboro;
+  width: 800px;
 }

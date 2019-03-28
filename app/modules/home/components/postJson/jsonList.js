@@ -2,7 +2,6 @@ import React from 'react'
 import JsonItem from './jsonItem'
 import Button from 'antd/lib/button'
 import 'antd/dist/antd.css'
-/*import data from '../../../../../data'*/
 
 class jsonList extends React.Component {
   constructor(props) {
@@ -18,23 +17,19 @@ class jsonList extends React.Component {
   }
 
   handle_click = () => {
-    fetch('/data', {method: 'get'}).then(
-      function (res) {
-        console.log(res)
-        res.json().then(function (data) {
-          console.log(data)
-          this.setState({
-            news: data
-          })
-        })
-      }
-    )
+    fetch('http://localhost:3003/data', {method: 'get'})
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        this.setState({ news: data })
+      })
+      .catch(e => console.log('error:', e))
   }
 
   render() {
     return (
       <div>
-        <Button type="primary" onClick={this.handle_click()}>获取JSON数据</Button>
+        <Button type="primary" onClick={this.handle_click}>获取JSON数据</Button>
         <br/>
         {
           this.state.news.map((item, i) =>

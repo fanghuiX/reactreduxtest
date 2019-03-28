@@ -16,8 +16,8 @@ class getL extends React.Component {
         <br/>
         <div style={{marginTop: 15}}>
           <ul>
-            {lists.map((e) =>
-              <List text={e.text}/>
+            {lists.map((e, i) =>
+              <List text={e.text} key={i}/>
             )}
           </ul>
         </div>
