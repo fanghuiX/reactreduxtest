@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '../index.css'
 
 class Comments extends React.Component {
 
@@ -8,7 +9,7 @@ class Comments extends React.Component {
       <div>
         <p><strong>{name}：</strong></p>
         <p style={{marginLeft: 20}}>{commandstr}</p>
-        <hr/>
+        <hr className={styles.hrline}/>
       </div>
     )
   }

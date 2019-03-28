@@ -39,3 +39,7 @@
   border: 1px dashed gainsboro;
   width: 800px;
 }
+
+.hrline {
+  border: 1px dashed gainsboro;
+}
