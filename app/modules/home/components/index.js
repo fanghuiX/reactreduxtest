@@ -38,7 +38,13 @@ class Home extends React.Component {
               <Menu.Item key="1">
                 <Link to="/re">
                   <Icon type="down" />
-                  <span>下一级页面</span>
+                  <span>评论分页页面</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="7">
+                <Link to="/table">
+                  <Icon type="table"/>
+                  <span>表格</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="2">

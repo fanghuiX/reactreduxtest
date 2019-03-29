@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { increase, decrease } from './actions/count'
 import Button from 'antd/lib/button'
+import Breadcrumb from 'antd/lib/breadcrumb'
 import 'antd/dist/antd.css'
 
 class indecrase extends React.Component {
@@ -12,16 +13,16 @@ class indecrase extends React.Component {
     }
   }
   componentWillMount() {
-    alert('componentWillMount')
+    /*alert('componentWillMount')*/
   }
   componentDidMount() {
-    alert('componentDidMount')
+    /*alert('componentDidMount')*/
   }
   componentDidUpdate(prevProps, prevState) {
   }
   componentWillUpdate(prevProps, prevState) {
     this.state.temp = (prevState.temp === 'fanghui' ? 'fh' : 'fanghui')
-    alert('componentDidUpdate')
+    /*alert('componentDidUpdate')*/
   }
 
   static defaultProps = {
@@ -32,6 +33,7 @@ class indecrase extends React.Component {
     const { number, increase, decrease } = this.props
     return (
       <div>
+        <Breadcrumb routes={this.props.routes} params={this.props.params}/><br/>
         <p>{this.props.email}</p>
         <p>{this.state.temp}</p>
         当前值为：<h2>{number}</h2>

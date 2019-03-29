@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getdata, cleardata } from './actions/getlists'
 import List from './List'
 import Button from 'antd/lib/button'
+import Breadcrumb from 'antd/lib/breadcrumb'
 import 'antd/dist/antd.css'
 
 class getL extends React.Component {
@@ -10,6 +11,7 @@ class getL extends React.Component {
     const { lists, getdata, cleardata } = this.props
     return (
       <div>
+        <Breadcrumb routes={this.props.routes} params={this.props.params}/><br/>
         <Button type="primary" onClick={() => getdata()}>显示数据</Button>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <Button type="primary" onClick={() => cleardata()}>清除数据</Button>

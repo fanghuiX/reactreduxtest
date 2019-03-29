@@ -1,6 +1,7 @@
 import React from 'react'
 import JsonItem from './jsonItem'
 import Button from 'antd/lib/button'
+import Breadcrumb from 'antd/lib/breadcrumb'
 import 'antd/dist/antd.css'
 
 class jsonList extends React.Component {
@@ -29,6 +30,7 @@ class jsonList extends React.Component {
   render() {
     return (
       <div>
+        <Breadcrumb routes={this.props.routes} params={this.props.params}/><br/>
         <Button type="primary" onClick={this.handle_click}>获取JSON数据</Button>
         <br/>
         {

@@ -1,4 +1,5 @@
 import React from 'react'
+import Breadcrumb from 'antd/lib/breadcrumb'
 
 class error404 extends React.Component {
   componentWillMount() {
@@ -12,7 +13,10 @@ class error404 extends React.Component {
   }
   render() {
     return (
-      <h1>404 not found!</h1>
+      <div>
+        <Breadcrumb routes={this.props.routes} params={this.props.params}/><br/>
+        <h1>404 not found!</h1>
+      </div>
     )
   }
 }

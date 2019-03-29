@@ -3,30 +3,43 @@ import styles from './index.css'
 import Input from 'antd/lib/input'
 import Button from 'antd/lib/button'
 import Commands from './comment/Comment'
+import Icon from 'antd/lib/icon'
+import Pagination from 'antd/lib/pagination'
+import Breadcrumb from 'antd/lib/breadcrumb'
 import 'antd/dist/antd.css'
 
 const { TextArea } = Input
 
 class rehome extends React.Component {
-  componentWillMount() {
+  state = {
+    mycomm: false,
+    flag: false,
+    commands: [],
+    name: 'fanghui',
+    commandstr: '咖啡色是的发送阿什顿发达法师打发，是的发送发撒旦法师法撒旦法三大是打发第三撒大大。',
+    currentData: [],
+    pageSize: 5,
+    currentPage: 1
+  }
 
+  componentWillMount() {
+    fetch('http://localhost:3005/commands', {method: 'get'})
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ commands: data })
+      })
+      .catch(e => console.log('error:', e))
   }
   componentDidMount() {
 
   }
   componentDidUpdate(prevProps, prevState) {
-
-  }
-
-  state = {
-    flag: false,
-    commands: [],
-    name: 'fanghui',
-    commandstr: '咖啡色是的发送阿什顿发达法师打发，是的发送发撒旦法师法撒旦法三大是打发第三撒大大。'
+    console.log(this.state.currentData)
   }
 
   handle_click = () => {
     this.setState({
+      mycomm: true,
       name: document.getElementById('nameee').value,
       commandstr: document.getElementById('commmm').value
     })
@@ -36,18 +49,25 @@ class rehome extends React.Component {
     this.setState({
       flag: !this.state.flag
     })
-    fetch('http://localhost:3005/commands', {method: 'get'})
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        this.setState({ commands: data })
-      })
-      .catch(e => console.log('error:', e))
+    const currentpage = this.state.currentPage
+    const pagesize = this.state.pageSize
+    this.setState({
+      currentData: this.state.commands.slice((currentpage - 1) * pagesize, currentpage * pagesize)
+    })
+  }
+
+  getPageComm = (page, pageSize) => {
+    this.setState({
+      currentPage: page,
+      pageSize: pageSize,
+      currentData: this.state.commands.slice((page - 1) * pageSize, page * pageSize)
+    })
   }
 
   render() {
     return (
       <div className={styles.nextcontainer}>
+        <Breadcrumb routes={this.props.routes} params={this.props.params}/><br/>
         <div className={styles.topp}>
           <p>用户名：</p>
           <Input id="nameee" placeholder="your name"/>
@@ -58,22 +78,31 @@ class rehome extends React.Component {
 
         <div className={styles.bottomm}>
           <p><strong>我的评论：</strong></p>
-          <Commands name={this.state.name} commandstr={this.state.commandstr} />
+          {
+            this.state.mycomm
+            ? <Commands name={this.state.name} commandstr={this.state.commandstr} /> : null
+          }
           <Button type="primary" style={{marginTop: 10, marginBottom: 10}} onClick={this.getCommandsAll}>
             {
-              this.state.flag ? <span>收起所有评论</span> : <span>查看所有评论</span>
+              this.state.flag ? <span>收起所有评论 <Icon type="up"/></span> : <span>展开所有评论 <Icon type="down"/></span>
             }
           </Button>
           {
             this.state.flag ? <p><strong>所有评论：</strong></p> : null
           }
+          {/*获取评论*/}
           {
             this.state.flag
-            ? this.state.commands.map((item, i) =>
+            ? this.state.currentData.map((item, i) =>
               <div key={i}>
                 <Commands name={item.name} commandstr={item.commandstr}/>
               </div>
             ) : null
+          }
+          {/*分页*/}
+          {
+            this.state.flag
+              ? <center><Pagination onChange={this.getPageComm} current={this.state.currentPage} defaultPageSize={this.state.pageSize} total={this.state.commands.length}/></center> : null
           }
         </div>
       </div>
