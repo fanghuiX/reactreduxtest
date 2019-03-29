@@ -9,6 +9,7 @@ import Breadcrumb from 'antd/lib/breadcrumb'
 import 'antd/dist/antd.css'
 
 const { TextArea } = Input
+const Search = Input.Search
 
 class rehome extends React.Component {
   state = {
@@ -64,6 +65,11 @@ class rehome extends React.Component {
     })
   }
 
+  getSearch = (value) => {
+    /*TODO*/
+    console.log(value)
+  }
+
   render() {
     return (
       <div className={styles.nextcontainer}>
@@ -82,13 +88,16 @@ class rehome extends React.Component {
             this.state.mycomm
             ? <Commands name={this.state.name} commandstr={this.state.commandstr} /> : null
           }
-          <Button type="primary" style={{marginTop: 10, marginBottom: 10}} onClick={this.getCommandsAll}>
+          <Button type="primary" style={{marginTop: 10, marginBottom: 20}} onClick={this.getCommandsAll}>
             {
               this.state.flag ? <span>收起所有评论 <Icon type="up"/></span> : <span>展开所有评论 <Icon type="down"/></span>
             }
           </Button>
           {
-            this.state.flag ? <p><strong>所有评论：</strong></p> : null
+            this.state.flag ? <Search placeholder="搜索评论..." enterButton="搜索评论" onSearch={value => this.getSearch(value)}/> : null
+          }
+          {
+            this.state.flag ? <p style={{marginTop: 20}}><strong>所有评论：</strong></p> : null
           }
           {/*获取评论*/}
           {
