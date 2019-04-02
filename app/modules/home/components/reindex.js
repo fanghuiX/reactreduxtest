@@ -19,6 +19,7 @@ class rehome extends React.Component {
     name: 'fanghui',
     commandstr: '咖啡色是的发送阿什顿发达法师打发，是的发送发撒旦法师法撒旦法三大是打发第三撒大大。',
     currentData: [],
+    searchData: [],
     pageSize: 5,
     currentPage: 1
   }
@@ -66,8 +67,18 @@ class rehome extends React.Component {
   }
 
   getSearch = (value) => {
-    /*TODO*/
-    console.log(value)
+    let temp = []
+    for (var js in this.state.commands) {
+      if (this.state.commands[js]['commandstr'].indexOf(value) !== -1) {
+        console.log(this.state.commands[js]['commandstr'])
+        temp.push(this.state.commands[js])
+      }
+    }
+    console.log(temp)
+    this.setState({
+      searchData: temp
+    })
+    console.log(this.state.searchData)
   }
 
   render() {
@@ -94,7 +105,16 @@ class rehome extends React.Component {
             }
           </Button>
           {
-            this.state.flag ? <Search placeholder="搜索评论..." enterButton="搜索评论" onSearch={value => this.getSearch(value)}/> : null
+            this.state.flag ? <Search id="search" placeholder="搜索评论..." enterButton="搜索评论" onSearch={value => this.getSearch(value)}/> : null
+          }
+          {
+            <p style={{marginTop: 20}}><strong>搜索‘{document.getElementById('search')}’获得的评论：</strong></p>
+          }
+          {
+            this.state.searchData.map((item, i) =>
+              <div key={i}>
+                <Commands name={item.name} commandstr={item.commandstr}/>
+              </div>)
           }
           {
             this.state.flag ? <p style={{marginTop: 20}}><strong>所有评论：</strong></p> : null
